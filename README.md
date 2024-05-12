@@ -9,7 +9,6 @@ This repository contains implementations of various graph algorithms in C++. The
 - [Usage](#usage)
 - [Testing](#testing)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 
@@ -47,10 +46,7 @@ This algorithm detects the presence of a negative cycle in a graph. It uses the 
 
 ## Usage
 
-- **Enter Terminal**
-- **Run "make all" command**
-- **Run "./test" or "./demo" command** 
-- **Run "make clean" command when finished**
+To use these algorithms, include the appropriate header file (`Algorithms.hpp`) in your C++ project and call the desired function with the graph object as a parameter.
 
 Example usage:
 
@@ -77,3 +73,10 @@ int main() {
     return 0;
 }
 
+## Run
+To run this project follow those steps:
+
+- **Enter Terminal**
+- **Run "make all" command**
+- **Run "./test" or "./demo" command** 
+- **Run "make clean" command when finished**
