@@ -56,9 +56,9 @@ namespace Algorithms {
         std::vector<bool> visited(n, false);
         std::stack<std::pair<int, int>> stk; // Change queue to stack for DFS
 
-        for (int startVer = 0; startVer < n; startVer++) {
-            if (visited[startVer]) continue;
-            stk.push({startVer, -1});
+        for (int start = 0; start < n; start++) {
+            if (visited[start]) continue;
+            stk.push({start, -1});
 
             while (!stk.empty()) {
                 int current = stk.top().first;
@@ -95,11 +95,11 @@ namespace Algorithms {
         if (n == 2) return "The graph is bipartite: A={0}, B={1}";
         std::vector<int> side(n, 0);
         std::stack<int> stk; // Change queue to stack for DFS
-        for (int startVertex = 0; startVertex < n; startVertex++) {
+        for (int start = 0; start < n; start++) {
             // for each vertex make sure the while got it (if not connected)
-            if (side[startVertex] == 0) {
-                stk.push(startVertex);
-                side[startVertex] = 1;
+            if (side[start] == 0) {
+                stk.push(start;
+                side[start] = 1;
                 while (!stk.empty()) {
                     // check for each connected vertex if not bipartite
                     int current = stk.top();
@@ -144,26 +144,26 @@ namespace Algorithms {
         if (start >= n || end >= n || start < 0 || end < 0) return "Input vertices don't match Graph size.";
         if (end == start) return std::to_string(start);
 
-        std::vector<int> VerDist(n, std::numeric_limits<int>::max());
+        std::vector<int> dist(n, std::numeric_limits<int>::max());
         std::queue<int> que;
         std::vector<int> reconstruct(n, -1);
 
         que.push(start);
-        VerDist[start] = 0;
+        dist[start] = 0;
 
         while (!que.empty()) {
             int current = que.front();
             que.pop();
             for (int i = 0; i < n; i++) {
-                if (g[current][i] != 0 && VerDist[i] > VerDist[current] + g[current][i]) {
-                    VerDist[i] = VerDist[current] + g[current][i];
+                if (g[current][i] != 0 && dist[i] > dist[current] + g[current][i]) {
+                    dist[i] = dist[current] + g[current][i];
                     reconstruct[i] = current;
                     que.push(i);
                 }
             }
         }
 
-        if (VerDist[end] == std::numeric_limits<int>::max()) return "-1";
+        if (dist[end] == std::numeric_limits<int>::max()) return "-1";
         // Reconstruct the path from endVer back to startVer
         std::string ans = std::to_string(end);
         int step = end;
