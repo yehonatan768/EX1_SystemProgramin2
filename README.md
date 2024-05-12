@@ -39,7 +39,7 @@ This algorithm checks whether a given graph is bipartite or not. It assigns vert
 
 ### Shortest Path
 
-The Shortest Path algorithm finds the shortest path between two given vertices in a graph. It uses Dijkstra's algorithm to calculate the shortest path.
+The shortestPath algorithm efficiently computes the shortest path between two vertices in a graph by utilizing a modified Breadth-First Search (BFS) approach.
 
 ### Negative Cycle
 
@@ -47,7 +47,10 @@ This algorithm detects the presence of a negative cycle in a graph. It uses the 
 
 ## Usage
 
-To use these algorithms, include the appropriate header file (`Algorithms.hpp`) in your C++ project and call the desired function with the graph object as a parameter.
+- **Enter Terminal**
+- **Run "make all" command**
+- **Run "./test" or "./demo" command** 
+- **Run "make clean" command when finished**
 
 Example usage:
 
