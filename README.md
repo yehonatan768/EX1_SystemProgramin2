@@ -7,8 +7,8 @@ This repository contains implementations of various graph algorithms in C++. The
 - [Introduction](#introduction)
 - [Algorithms](#algorithms)
 - [Usage](#usage)
-- [Testing](#testing)
-- [Contributing](#contributing)
+- [Run](#running)
+
 
 ## Introduction
 
@@ -72,6 +72,7 @@ int main() {
     cout << negativeCycle(g) << endl;
     return 0;
 }
+```
 
 ## Run
 To run this project follow those steps:
