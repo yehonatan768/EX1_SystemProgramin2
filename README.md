@@ -7,7 +7,7 @@ This repository contains implementations of various graph algorithms in C++. The
 - [Introduction](#introduction)
 - [Algorithms](#algorithms)
 - [Usage](#usage)
-- [Run](#running)
+- [Run](#run)
 
 
 ## Introduction
