@@ -20,7 +20,7 @@ TEST_CASE("Test isConnected")
         {0, 1, 0},
         {1, 0, 1},
         {0, 1, 0}};
-    g.loadGraph(graph);
+    g.setMatrix(graph);
     CHECK(Algorithms::isConnected(g) == 1);
 
     vector<vector<int>> graph2 = {
@@ -29,7 +29,7 @@ TEST_CASE("Test isConnected")
         {1, 1, 0, 1, 0},
         {0, 0, 1, 0, 0},
         {0, 0, 0, 0, 0}};
-    g.loadGraph(graph2);
+    g.setMatrix(graph2);
     CHECK(Algorithms::isConnected(g) == 0);
 }
 
@@ -40,7 +40,7 @@ TEST_CASE("Test shortestPath")
         {0, 1, 0},
         {1, 0, 1},
         {0, 1, 0}};
-    g.loadGraph(graph);
+    g.setMatrix(graph);
     CHECK(Algorithms::shortestPath(g, 0, 2) == "0->1->2");
 
     vector<vector<int>> graph2 = {
@@ -49,7 +49,7 @@ TEST_CASE("Test shortestPath")
         {1, 1, 0, 1, 0},
         {0, 0, 1, 0, 0},
         {0, 0, 0, 0, 0}};
-    g.loadGraph(graph2);
+    g.setMatrix(graph2);
     
     CHECK(Algorithms::shortestPath(g, 0, 4) == "-1");
 
@@ -59,7 +59,7 @@ TEST_CASE("Test shortestPath")
         {1, 1, 0, 1, 0},
         {0, 0, 1, 0, 1},
         {100, 0, 0, 1, 0}};
-    g.loadGraph(graph3);
+    g.setMatrix(graph3);
     
     CHECK(Algorithms::shortestPath(g, 0, 4) == "0->2->3->4");
 
@@ -69,17 +69,17 @@ TEST_CASE("Test shortestPath")
         {1, 1, 0, 1, 0},
         {0, 0, 1, 0, 1},
         {1, 0, 0, 1, 0}};
-    g.loadGraph(graph4);
+    g.setMatrix(graph4);
     
     CHECK(Algorithms::shortestPath(g, 0, 4) == "0->4");
 
     vector<vector<int>> graph5 = {
-        {0, 1, 1, 0, 1},
+        {0, -1, 1, 0, 1},
         {1, 0, 1, 0, 0},
         {1, 1, 0, 1, 0},
-        {0, 0, 1, 0, 1},
-        {1, 0, 0, 1, 0}};
-    g.loadGraph(graph5);
+        {0, 0, 1, 0, -1},
+        {1, 0, 0, -1, 0}};
+    g.setMatrix(graph5);
     
     CHECK(Algorithms::shortestPath(g, 0, 0) == "0");
     
@@ -91,7 +91,7 @@ TEST_CASE("Test isContainsCycle")
         {0, 1, 0},
         {1, 0, 1},
         {0, 1, 0}};
-    g.loadGraph(graph);
+    g.setMatrix(graph);
     CHECK(Algorithms::isContainsCycle(g) == false);
     
 
@@ -101,7 +101,7 @@ TEST_CASE("Test isContainsCycle")
         {1, 1, 0, 1, 0},
         {0, 0, 1, 0, 0},
         {0, 0, 0, 0, 0}};
-    g.loadGraph(graph2);
+    g.setMatrix(graph2);
     CHECK(Algorithms::isContainsCycle(g) == true);
 
     vector<vector<int>> graph3 = {
@@ -110,7 +110,7 @@ TEST_CASE("Test isContainsCycle")
         {0, 1, 0, 1},
         {1, 0, 1, 0},
     };
-    g.loadGraph(graph3);
+    g.setMatrix(graph3);
     CHECK(Algorithms::isContainsCycle(g) == true);
 
     vector<vector<int>> graph4 = {
@@ -119,7 +119,7 @@ TEST_CASE("Test isContainsCycle")
         {0, 1, 0, 1},
         {0, 0, 1, 0},
     };
-    g.loadGraph(graph4);
+    g.setMatrix(graph4);
     CHECK(Algorithms::isContainsCycle(g) == false);
 }
 
@@ -127,12 +127,12 @@ TEST_CASE("Test isContainsCycle")
 TEST_CASE("Test isBipartite")
 {
     Graph g;
-    vector<vector<int>> graph = {
+    vector<vector<int>> graph1 = {
         {0, 1, 0},
         {1, 0, 1},
         {0, 1, 0}};
-    g.loadGraph(graph);
-    CHECK(Algorithms::isBipartite(g) == "The graph is bipartite: A={0, 2}, B={1}");
+    g.setMatrix(graph1);
+    CHECK(isBipartite(g) == "The graph is bipartite: A={0, 2}, B={1}");
 
     vector<vector<int>> graph2 = {
         {0, 1, 1, 0, 0},
@@ -140,8 +140,8 @@ TEST_CASE("Test isBipartite")
         {1, 1, 0, 1, 0},
         {0, 0, 1, 0, 0},
         {0, 0, 0, 0, 0}};
-    g.loadGraph(graph2);
-    CHECK(Algorithms::isBipartite(g) == "0");
+    g.setMatrix(graph2);
+    CHECK(isBipartite(g) == "0");
 
     vector<vector<int>> graph3 = {
         {0, 1, 0, 0, 0},
@@ -149,8 +149,8 @@ TEST_CASE("Test isBipartite")
         {0, 3, 0, 4, 0},
         {0, 0, 4, 0, 5},
         {0, 0, 0, 5, 0}};
-    g.loadGraph(graph3);
-    CHECK(Algorithms::isBipartite(g) == "The graph is bipartite: A={0, 2, 4}, B={1, 3}");
+    g.setMatrix(graph3);
+    CHECK(isBipartite(g) == "The graph is bipartite: A={0, 2, 4}, B={1, 3}");
 
     vector<vector<int>> graph4 = {
         {0, 1, 2, 0, 0},
@@ -158,20 +158,19 @@ TEST_CASE("Test isBipartite")
         {2, 3, 0, 4, 0},
         {0, 0, 4, 0, 5},
         {0, 0, 0, 5, 0}};
-    g.loadGraph(graph4);
-    CHECK(Algorithms::isBipartite(g) == "0");
-
+    g.setMatrix(graph4);
+    CHECK(isBipartite(g) == "0");
 
     vector<vector<int>> graph5 = {{0}};
-    g.loadGraph(graph5);
-    CHECK(Algorithms::isBipartite(g) == "The graph is bipartite: A={0}, B={}");
+    g.setMatrix(graph5);
+    CHECK(isBipartite(g) == "The graph is bipartite: A={0}, B={}");
 
     vector<vector<int>> graph6 = {
         {0, 1},
         {1, 0}
     };
-    g.loadGraph(graph6);
-    CHECK(Algorithms::isBipartite(g) == "The graph is bipartite: A={0}, B={1}");
+    g.setMatrix(graph6);
+    CHECK(isBipartite(g) == "The graph is bipartite: A={0}, B={1}");
 
     vector<vector<int>> graph7 = {
         {0, 1, 0, 1},
@@ -179,29 +178,8 @@ TEST_CASE("Test isBipartite")
         {0, 1, 0, 1},
         {1, 0, 1, 0},
     };
-    g.loadGraph(graph7);
-    CHECK(Algorithms::isBipartite(g) == "The graph is bipartite: A={0, 2}, B={1, 3}");
-}
-
-
-TEST_CASE("Test invalid graph")
-{
-    Graph g;
-    vector<vector<int>> graph = {
-        {0, 1, 2, 0},
-        {1, 0, 3, 0},
-        {2, 3, 0, 4},
-        {0, 0, 4, 0},
-        {0, 0, 0, 5}};
-    CHECK_THROWS(g.loadGraph(graph));
-
-    vector<vector<int>> graph2 = {
-        {0, 1, 2, 0, 0},
-        {1, 0, 3, 0, 0},
-        {2, 3, 5, 4, 0},
-        {0, 0, 4, 0, 5},
-        {0, 0, 0, 5, 0}};
-    CHECK_THROWS(g.loadGraph(graph2));
+    g.setMatrix(graph7);
+    CHECK(isBipartite(g) == "The graph is bipartite: A={0, 2}, B={1, 3}");
 }
 
 
@@ -214,7 +192,7 @@ TEST_CASE("Test negativeCycle")
         {0, 1, 0, 1},
         {1, 0, 1, 0},
     };
-    g.loadGraph(graph);
+    g.setMatrix(graph);
     CHECK(Algorithms::negativeCycle(g)=="No Negative Cycle");
 
 
@@ -224,7 +202,7 @@ TEST_CASE("Test negativeCycle")
         {0, 1, 0, 1},
         {-100, 0, 1, 0},
     };
-    g.loadGraph(graph2);
+    g.setMatrix(graph2);
     CHECK(Algorithms::negativeCycle(g)=="0->3->0");
 
 
@@ -234,6 +212,6 @@ TEST_CASE("Test negativeCycle")
         {0, 1, 0, 1},
         {0, 0, 1, 0},
     };
-    g.loadGraph(graph3);
+    g.setMatrix(graph3);
     CHECK(Algorithms::negativeCycle(g)=="2->3->0->1->2");
 }

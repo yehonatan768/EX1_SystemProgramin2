@@ -22,7 +22,7 @@ public:
      * @param g The adjacency matrix representing the graph.
      * @throws std::invalid_argument if the matrix is not square or contains self edges.
      */
-    void loadGraph(std::vector<std::vector<int>> g);
+    void setMatrix(std::vector<std::vector<int>> g);
 
     /**
      * @brief Prints the adjacency matrix representing the graph.
@@ -34,7 +34,8 @@ public:
      * 
      * @return std::vector<std::vector<int>> The adjacency matrix of the graph.
      */
-    std::vector<std::vector<int>> setMatrix();
+    std::vector<std::vector<int>> getMatrix();
+
 };
 
 #endif // GRAPH_HPP

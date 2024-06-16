@@ -25,7 +25,7 @@ int main()
         {0, 1, 0},
         {1, 0, 1},
         {0, 1, 0}};
-    g.loadGraph(graph); // Load the graph to the object.
+    g.setMatrix(graph); // Load the graph to the object.
 
     g.printGraph();                                    // Should print: "Graph with 3 vertices and 4 edges."
     std::cout << Algorithms::isConnected(g) << std::endl;        // Should print: "1" (true).
@@ -41,12 +41,12 @@ int main()
         {0, 0, 1, 0, 0},
         {0, 0, 0, 0, 0}};
 
-    g.loadGraph(graph2); // Load the graph to the object.
+    g.setMatrix(graph2); // Load the graph to the object.
 
     g.printGraph();                                    // Should print: "Graph with 5 vertices and 8 edges."
     std::cout << Algorithms::isConnected(g) << std::endl;        // Should print: "0" (false).
     std::cout << Algorithms::shortestPath(g, 0, 4) << std::endl; // Should print: "-1" (there is no path between 0 and 4).
-    std::cout << Algorithms::isContainsCycle(g) << std::endl;    // Should print: "The cycle is: 0->1->2->0".
+    std::cout << Algorithms::isContainsCycle(g) << std::endl;    // Should print: "1".
     std::cout << Algorithms::isBipartite(g) << std::endl;        // Should print: "0" (false).
 
     // 5x5 matrix that reprsents a connected weighted graph.
@@ -56,7 +56,7 @@ int main()
         {2, 3, 0, 4, 0},
         {0, 0, 4, 0, 5},
         {0, 0, 0, 5, 0}};
-    g.loadGraph(graph3); // Load the graph to the object.
+    g.setMatrix(graph3); // Load the graph to the object.
 
     g.printGraph();                                    // Should print: "Graph with 5 vertices and 10 edges."
     std::cout << Algorithms::isConnected(g) << std::endl;        // Should print: "1" (true).
@@ -73,7 +73,7 @@ int main()
         {0, 0, 0, 5}};
     try
     {
-        g.loadGraph(graph4); // Load the graph to the object.
+        g.setMatrix(graph4); // Load the graph to the object.
     }
     catch (const std::invalid_argument &e)
     {

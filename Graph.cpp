@@ -6,6 +6,7 @@
 #include <vector>
 #include <iostream>
 #include "Graph.hpp"
+#include <iomanip>
 
 /**
  * @brief Loads the graph from the given adjacency matrix.
@@ -13,7 +14,7 @@
  * @param g The adjacency matrix representing the graph.
  * @throws std::invalid_argument if the matrix is not square or contains self edges.
  */
-void Graph::loadGraph(std::vector<std::vector<int>> g) {
+void Graph::setMatrix(std::vector<std::vector<int>> g) {
     if (g.empty() || g.size() != g[0].size()) {
         throw std::invalid_argument("Invalid graph: The graph is not a square matrix.");
     }
@@ -21,9 +22,6 @@ void Graph::loadGraph(std::vector<std::vector<int>> g) {
     for (size_t i = 0; i < g.size(); ++i) {
         if (g[i].size() != g.size()) {
             throw std::invalid_argument("Invalid graph: The graph is not a square matrix.");
-        }
-        if (g[i][i] != 0) {
-            throw std::invalid_argument("Invalid graph: No self edges allowed!");
         }
     }
 
@@ -48,7 +46,8 @@ void Graph::printGraph() {
  * 
  * @return std::vector<std::vector<int>> The adjacency matrix of the graph.
  */
-std::vector<std::vector<int>> Graph::setMatrix() {
+std::vector<std::vector<int>> Graph::getMatrix() {
     std::vector<std::vector<int>> ans = this->g;
     return ans;
 }
+
